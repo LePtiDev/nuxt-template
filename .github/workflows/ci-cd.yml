@@ -14,6 +14,9 @@ jobs:
   lint-and-format:
     name: Lint et Format
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -43,6 +46,9 @@ jobs:
     name: Deploy to Nuxt Hub
     runs-on: ubuntu-latest
     needs: lint-and-format
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -66,7 +72,6 @@ jobs:
         uses: nuxt-hub/action@v2
         with:
           project-key: ${{ secrets.NUXT_HUB_PROJECT_ID }}
-          token: ${{ secrets.NUXT_HUB_TOKEN }}
 
       - name: Notification of success
         if: success()
