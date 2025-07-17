@@ -9,11 +9,14 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@nuxt/eslint": "1.5.2",
     "@nuxt/ui": "3.2.0",
+    "@nuxtjs/i18n": "10.0.0",
     "eslint": "^9.31.0",
     "nuxt": "^4.0.0",
     "prettier": "^3.6.2",

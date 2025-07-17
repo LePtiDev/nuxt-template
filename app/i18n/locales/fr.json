@@ -1,0 +1,15 @@
+{
+  "welcome": "Bienvenue",
+  "feature": {
+    "auth": {
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "forgot_password": "Mot de passe oublié",
+      "sign_in": "Se connecter",
+      "create_account": "Créer un compte",
+      "dont_already_have_an_account": "Je n'ai pas encore de compte",
+      "sign_in_with_google": "Connectez-vous avec Google",
+      "sign_in_with_microsoft": "Connectez-vous avec Microsoft"
+    }
+  }
+}

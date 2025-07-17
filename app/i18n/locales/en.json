@@ -1,0 +1,15 @@
+{
+  "welcome": "Welcome",
+  "feature": {
+    "auth": {
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot password",
+      "sign_in": "Sign in",
+      "create_account": "Create account",
+      "dont_already_have_an_account": "dont already have an account",
+      "sign_in_with_google": "Sign in with google",
+      "sign_in_with_microsoft": "Sign in with microsoft"
+    }
+  }
+}

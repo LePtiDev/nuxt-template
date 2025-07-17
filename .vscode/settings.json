@@ -2,7 +2,7 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "eslint.format.enable": true,
-  "eslint.workingDirectories": ["./apps/webapp"],
+  "eslint.workingDirectories": ["./"],
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -21,10 +21,18 @@
     "*.css": "tailwindcss"
   },
   "terminal.integrated.defaultProfile.osx": null,
-  "sql-formatter.dialect": "pl/sql",
   "editor.quickSuggestions": {
     "strings": "on"
   },
   "tailwindCSS.classAttributes": ["class", "ui"],
-  "tailwindCSS.experimental.classRegex": [["ui:\\s*{([^)]*)\\s*}", "(?:'|\"|`)([^']*)(?:'|\"|`)"]]
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "ui:\\s*{([^)]*)\\s*}",
+      "(?:'|\"|`)([^']*)(?:'|\"|`)"
+    ]
+  ],
+  "i18n-ally.localesPaths": [
+    "./app/i18n/locales"
+  ],
+  "i18n-ally.keystyle": "nested"
 }

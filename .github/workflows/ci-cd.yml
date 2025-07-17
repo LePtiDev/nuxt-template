@@ -1,0 +1,82 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  NUXT_HUB_PROJECT_ID: ${{ secrets.NUXT_HUB_PROJECT_ID }}
+  NUXT_HUB_TOKEN: ${{ secrets.NUXT_HUB_TOKEN }}
+
+jobs:
+  lint-and-format:
+    name: Lint et Format
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.9.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check lint
+        run: pnpm lint:check
+
+      - name: Check fromat
+        run: pnpm format:check
+
+      - name: Test build
+        run: pnpm build
+
+  deploy:
+    name: Deploy to Nuxt Hub
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.9.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build & Deploy to NuxtHub
+        uses: nuxt-hub/action@v2
+        with:
+          project-key: ${{ secrets.NUXT_HUB_PROJECT_ID }}
+          token: ${{ secrets.NUXT_HUB_TOKEN }}
+
+      - name: Notification of success
+        if: success()
+        run: |
+          echo "✅ Deployment successful on Nuxt Hub!"
+          echo "🌐 Your application is now online"
+
+      - name: Notification of failure
+        if: failure()
+        run: |
+          echo "❌ Deployment failed"
+          echo "Check the logs above for more details"
