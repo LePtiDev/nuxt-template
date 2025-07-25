@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: ${NUXT_DATABASE_USER:-nuxt_user}
       POSTGRES_PASSWORD: ${NUXT_DATABASE_PASSWORD:-nuxt_password}
     ports:
-      - "${NUXT_DATABASE_PORT:-5432}:5432"
+      - '${NUXT_DATABASE_PORT:-5432}:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -21,8 +21,8 @@ services:
       MINIO_ROOT_USER: ${NUXT_S3_ACCESS_KEY:-minioadmin}
       MINIO_ROOT_PASSWORD: ${NUXT_S3_SECRET_KEY:-minioadmin123}
     ports:
-      - "${NUXT_S3_PORT:-9000}:9000"
-      - "9001:9001"
+      - '${NUXT_S3_PORT:-9000}:9000'
+      - '9001:9001'
     volumes:
       - minio_data:/data
     networks:
@@ -36,4 +36,4 @@ volumes:
 
 networks:
   nuxt-network:
-    driver: bridge 
+    driver: bridge
