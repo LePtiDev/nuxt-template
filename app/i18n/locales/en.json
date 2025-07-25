@@ -9,7 +9,12 @@
       "create_account": "Create account",
       "dont_already_have_an_account": "dont already have an account",
       "sign_in_with_google": "Sign in with google",
-      "sign_in_with_microsoft": "Sign in with microsoft"
+      "sign_in_with_microsoft": "Sign in with microsoft",
+      "confirm_password": "Confirm password",
+      "sign_up": "Sign up",
+      "sign_up_with_google": "Sign up with google",
+      "sign_up_with_microsoft": "Sign up with microsoft",
+      "already_have_an_account": "Already have an account"
     }
   }
 }

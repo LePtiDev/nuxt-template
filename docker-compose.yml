@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: nuxt-postgres
+    environment:
+      POSTGRES_DB: ${NUXT_DATABASE_NAME:-nuxt_app}
+      POSTGRES_USER: ${NUXT_DATABASE_USER:-nuxt_user}
+      POSTGRES_PASSWORD: ${NUXT_DATABASE_PASSWORD:-nuxt_password}
+    ports:
+      - "${NUXT_DATABASE_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nuxt-network
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    container_name: nuxt-minio
+    environment:
+      MINIO_ROOT_USER: ${NUXT_S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${NUXT_S3_SECRET_KEY:-minioadmin123}
+    ports:
+      - "${NUXT_S3_PORT:-9000}:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - nuxt-network
+    command: server /data --console-address ":9001"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  minio_data:
+
+networks:
+  nuxt-network:
+    driver: bridge 
